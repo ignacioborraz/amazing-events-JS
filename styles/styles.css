@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0 solid;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.backGroundImage {
+    background-image: url(../files/asientos.jpg);
+    background-size: cover;
+}
+
+h1 {
+    height: 160px;
+    font-size: 70px;
+    font-weight: 1000;
+    font-family: 'Licorice', cursive;
+    align-items: flex-end;
+}
+
+.navbar-dark {
+    color: rgb(190 ,50 ,80) !important;
+}
+
+.bg-dark {
+    background-color: rgba(40, 40, 40) !important;
+}
+
+h2 {
+    height: 40px;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: rgba(210, 210, 210, 0.5);
+    color: rgb(140, 50, 70);
+}
+
+.hoverEvent {
+    text-decoration: none;
+    background-color: rgba(210, 210, 210, 0.3);
+    color: rgba(40, 40, 40);
+}
+
+.hoverEvent:hover {
+    background-color: rgb(140, 50, 70, 0.8);
+    color: rgba(210, 210, 210);
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.imgWidth {
+    width: 500px;
+}
+
+#modalDetail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 0;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    display: none;
+    flex-direction: column;
+    pointer-events: none;
+}
+
+.modal:target {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.closeModal {
+    font-weight: bold;
+}
+
+.closeModal:hover:not(img) {
+    background-color: rgb(140, 50, 70);
+    color: rgb(210, 210, 210)
+}
+
+.grow1 {
+    flex-grow: 1;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.red {
+    background-color: rgb(190 ,50 ,80);
+    color: black;
+}
+
+.black {
+    background-color: rgba(40, 40, 40);
+    color: rgb(190 ,50 ,80);
+}
+
+.blackT {
+    background-color: rgba(210, 210, 210, 0.5);
+    color: rgb(140, 50, 70);
+}
+
+p , h3 {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 400px) and (max-width: 520px){        
+
+    h1 {
+        height: 130px;
+        font-size: 60px;
+        font-weight: 750;
+    }
+
+    .imgWidth {
+            width: 390px;
+        }
+    
+}
+
+@media only screen and (min-width: 300px) and (max-width: 400px){        
+
+    h1 {
+        height: 90px;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .imgWidth {
+            width: 290px;
+        }
+    
+}

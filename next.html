@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>AMAZING EVENTS - next events</title>
+</head>
+<body class="d-flex flex-column w-100 backGroundImage">
+    <header class="d-flex flex-column w-100">
+        <h1 class="d-flex justify-content-center w-100 mb-2">Amazing Events!</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>              
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <a class="navbar-brand" href="index.html">HOME</a>
+                <div class="navbar-nav">
+                    <a class="nav-link" href="past.html">PAST EVENTS</a>
+                    <a class="nav-link active" aria-current="page" href="#">NEXT EVENTS</a>
+                    <a class="nav-link" href="summary.html">SUMMARY</a>
+                </div> 
+            </div>
+        </nav>
+    </header>
+    <main class="d-flex flex-column grow1 w-100">
+        <section class="d-flex flex-column justify-content-center align-items-center w-100">
+            <h2 class="d-flex justify-content-center align-items-center w-100 mt-2">Have fun with our next events!</h2>
+            <pre class="d-flex wrap justify-content-evenly align-items-center w-100" id="events"></pre>
+        </section>
+    </main>
+    <footer class="d-flex align-items-center justify-content-center red w-100">
+        <p class="d-flex align-items-center justify-content-center">Learn & Enjoy School</p>
+    </footer>
+    <script src="./javaScripts/next.js" type='module'></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

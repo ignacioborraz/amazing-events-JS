@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>AMAZING EVENTS</title>
+</head>
+<body class="d-flex flex-column w-100 backGroundImage">
+    <header class="d-flex flex-column w-100">
+        <h1 class="d-flex justify-content-center w-100 mb-2">Amazing Events!</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>              
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <a class="navbar-brand active" aria-current="page" href="#">HOME</a>
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="past.html">PAST EVENTS</a>
+                        <a class="nav-link" href="next.html">NEXT EVENTS</a>
+                        <a class="nav-link" href="summary.html">SUMMARY</a>
+                    </div>
+                    <div class="nav-item dropdown me-3">
+                        <select class="form-select form-select" id="defaultList" aria-label=".form-select example">
+                            <option selected id="default">select category</option>
+                        </select>
+                    </div>
+                    <div class="nav-item">
+                        <form action="">
+                            <input type="text" placeholder="SEARCH" class="nav-link nav-colors" id="inputToSearch">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="d-flex flex-column grow1 w-100">
+        <section class="d-flex flex-column justify-content-center align-items-center w-100">
+            <h2 class="d-flex justify-content-center align-items-center w-100 mt-2">Have fun and enjoy our events!</h2>
+            <pre class="d-flex wrap justify-content-evenly align-items-center w-100" id="events"></pre>
+        </section>
+        <section class="modal justify-content-center align-items-center w-100" id="modal">
+            <img class="imgWidth" src="./files/pochoclo_working.jpg" alt="popcorn">
+            <a class="closeModal red mt-3 hoverEvent imgWidth" href="#"><h3>close</h3></a>
+        </section>
+        <section class="modal justify-content-center align-items-center imgWidth" id="modalSignUp">
+            <form action="newForm.html" class="d-flex flex-column justify-content-center align-items-center black imgWidth">
+                <label class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" for="newNick">Type your nickname:</label>
+                <input class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" type="text" id="newNick" name="newNick">
+                <label class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" for="mail">Your e-mail:</label>
+                <input class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" type="email" id="mail" name="mail">
+                <label class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" for="passW">Password:</label>
+                <input class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" type="password" id="passW" name="passW">
+                <label class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" for="passWo">Repeat your password:</label>
+                <input class="d-flex justify-content-center align-items-center p-1 m1 imgWidth" type="password" id="passWo" name="passWo">
+            </form>
+            <a class="closeModal red p-1 mt-3 imgWidth hoverEvent" href="#modal"><h3>sign up!</h3></a>
+        </section>
+    </main>
+    <footer class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>              
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="nav-item">
+                    <form action="form.html" class="d-flex justify-content-center align-items-center">
+                        <fieldset class="d-flex justify-content-center align-items-center">
+                            <label for="nickName">Nickname:</label>
+                            <input type="email" class="nav-link nav-colors ms-3 me-5" id="nickName">
+                        </fieldset>
+                        <fieldset class="d-flex justify-content-center align-items-center">
+                            <label for="passWord">Password</label>
+                            <input type="password" class="nav-link nav-colors ms-3 me-5" id="passWord">
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#modal">Log in</a>
+                    <a class="nav-link" href="#modalSignUp">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./javaScripts/main.js" type='module'></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
