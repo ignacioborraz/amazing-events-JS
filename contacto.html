@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="./styles/styles.css">
+        <title>Espectaculares!</title>
+    </head>
+    <body class="d-flex flex-column w-100 backGroundImage">
+        <header class="d-flex flex-column w-100">
+            <h1 class="d-flex justify-content-center align-items-end w-100 shadows">Eventos Espectaculares!</h1>
+            <nav class="navbar navbar-expand-md navbarColor">
+                <div class="container-fluid d-flex text-center">
+                    <a class="navbar-toggler navbarButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">=</a>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <a class="d-flex justify-content-center align-items-center w-25 navbarText" aria-current="page" href="#">INICIO</a>
+                        <a class="d-flex justify-content-center align-items-center w-25 navbarText" href="pasados.html">EVENTOS PASADOS</a>
+                        <a class="d-flex justify-content-center align-items-center w-25 navbarText" href="tablas.html">TABLAS</a>
+                        <a class="d-flex justify-content-center align-items-center w-25 navbarTextLog" href="contacto.html">CONTACTO</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main class="d-flex flex-column flex-grow-1 justify-content-center align-items-center w-100">
+            <section class="modal justify-content-center align-items-center w-100" id="modal">
+                <img class="w-50" src="./files/pochoclo_working.jpg" alt="popcorn">
+                <a class="d-flex justify-content-center align-items-center text-center p-1 w-50 hoverEventButton" href="#"><h3>Cerrar</h3></a>
+            </section>
+            <section class="imgWidth">
+                <form action="newForm.html" class="d-flex flex-column justify-content-center align-items-center black imgWidth">
+                    <label class="d-flex justify-content-center align-items-center text-center p-1 imgWidth" for="newNick">Nombre:</label>
+                    <input class="d-flex justify-content-center align-items-center text-center p-1 imgWidth" type="text" id="newNick" name="newNick">
+                    <label class="d-flex justify-content-center align-items-center text-center p-1 mt-1 imgWidth" for="mail">E-mail:</label>
+                    <input class="d-flex justify-content-center align-items-center text-center p-1 imgWidth" type="email" id="mail" name="mail">
+                    <label class="d-flex justify-content-center align-items-center text-center p-1 mt-1 imgWidth" for="comment">Consulta:</label>
+                    <textarea class="d-flex justify-content-center align-items-center text-center p-1 imgWidth" rows="5" type="text" maxlength="300" id="comment" name="comment"></textarea>
+                    <a class="d-flex justify-content-center align-items-center text-center p-1 mt-2 imgWidth hoverEvent" href="#modal">Enviar!</a>
+                </form>
+            </section>
+        </main>
+        <footer class="d-flex flex-column align-items-center justify-content-center w-100 mt-2">
+            <h4 class="d-flex align-items-center justify-content-center">Especialistas en Eventos!</h4>
+        </footer>
+        <script src="./javaScripts/index.js" type='module'></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </body>
+</html>
