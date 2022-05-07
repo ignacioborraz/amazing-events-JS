@@ -17,7 +17,7 @@ body {
 
 .backGroundImage {
     background-image: url(../files/asientos.jpg);
-    background-size: contain;
+    background-size: 100%;
 }
 
 h1 {
@@ -146,7 +146,7 @@ option {
     height: 180px;
 }
 
-label {
+label , .cardDetail {
     background-color: rgba(40, 40, 40);
     color: rgb(190 ,50 ,80);
     font-weight: 600;
@@ -155,10 +155,6 @@ label {
 textarea {
     resize: none;
 }
-
-
-
-
 
 #modalDetail {
     position: fixed;
@@ -196,23 +192,7 @@ textarea {
     color: rgb(210, 210, 210)
 }
 
-/* .red {
-    background-color: rgb(190 ,50 ,80);
-    color: black;
-}
-
-.black {
-    background-color: rgba(40, 40, 40);
-    color: rgb(190 ,50 ,80);
-}
-
-.blackT {
-    background-color: rgba(210, 210, 210, 0.5);
-    color: rgb(140, 50, 70);
-} */
-
 @media only screen and (max-width: 576px){
-
 
     h1 {
         height: 100px;
@@ -236,6 +216,10 @@ textarea {
         font-size: 16px;
     }
 
+    .tdHide {
+        display: none !important;
+    }
+
 }
 
 @media only screen and (max-width: 992px){
@@ -248,12 +232,32 @@ textarea {
         font-size: 20px;
     }
 
+    th {
+        font-size: 13px;
+    }
+
+    td {
+        font-size: 11px;
+    }
+
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px){
 
     h3 {
         font-size: 22px;
+    }
+
+    th {
+        font-size: 16px;
+    }
+
+    td {
+        font-size: 14px;
+    }
+
+    .articleDetail {
+        width: 50% !important;
     }
 
 }
@@ -280,6 +284,10 @@ textarea {
         font-size: 24px;
     }
 
+    .articleDetail {
+        width: 50% !important;
+    }
+
 }
 
 @media only screen and (min-width: 1400px){
@@ -290,6 +298,10 @@ textarea {
 
     .imgWidth img {
         height: 250px;
+    }
+
+    .articleDetail {
+        width: 700px !important;
     }
 
 }

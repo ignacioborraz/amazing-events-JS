@@ -16,12 +16,12 @@ function toPrintDetails (arrayOfEvents) { // defino la funcion que imprime en pa
     var events = arrayOfEvents.find(e => {return e.id ==selectedId})    
     var toPrintDetails = 
         `
-            <article class="d-flex flex-column justify-content-center align-items-center imgWidth" id="event${events.id}">
-                <h3 class="d-flex justify-content-center align-items-center card-text mt-1 imgWidth black">${events.name}</h3>
-                <img src="${events.image}" class="imgWidth">
-                <p class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth black">${events.category}</p>
-                <p class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth black">Lugar: ${events.place} - Fecha: ${events.date}</p>
-                <p class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth black">Capacidad: ${events.capacity} - Precio: ${events.price}</p>
+            <article class="d-flex flex-column justify-content-center align-items-center w-75 articleDetail" id="event${events.id}">
+                <h3 class="d-flex justify-content-center align-items-center cardDetail mt-1 mb-1 w-100">${events.name}</h3>
+                <img src="${events.image}" class="w-100">
+                <p class="d-flex justify-content-center align-items-center cardDetail mt-1 mb-1 w-100">${events.category}</p>
+                <p class="d-flex justify-content-center align-items-center cardDetail mt-1 mb-1 w-100">Lugar: ${events.place} - Fecha: ${events.date}</p>
+                <p class="d-flex justify-content-center align-items-center cardDetail mt-1 mb-1 w-100">Capacidad: ${events.capacity} - Precio: ${events.price}</p>
             </article>
         `
         //console.log(toPrintDetails);

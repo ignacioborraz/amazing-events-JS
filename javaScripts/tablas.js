@@ -113,10 +113,10 @@ byCategory.map(event => {
         eventsByCategory +=
         `
         <tr class="table-light d-flex justify-content-center">
-            <td scope="row" class="col-2 d-flex justify-content-center align-items-center text-center">${event.category}</td>
-            <td scope="row" class="col-6 d-flex justify-content-center align-items-center text-center">${event.name}</td>
-            <td scope="row" class="col-1 d-flex justify-content-center align-items-center text-center">${event.capacity}</td>
-            <td scope="row" class="col-1 d-flex justify-content-center align-items-center text-center">${event.percentAssistance}%</td>
+            <td scope="row" class="col-1 d-flex justify-content-center align-items-center text-center">${event.category}</td>
+            <td scope="row" class="col-4 d-flex justify-content-center align-items-center text-center">${event.name.join(`<br>`)}</td>
+            <td scope="row" class="col-1 d-flex justify-content-center align-items-center text-center tdHide">${event.capacity}</td>
+            <td scope="row" class="col-1 d-flex justify-content-center align-items-center text-center tdHide">${event.percentAssistance}%</td>
             <td scope="row" class="col-1 d-flex justify-content-center align-items-center text-center">$${event.gain}</td>     
         </tr>
         `
