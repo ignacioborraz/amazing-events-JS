@@ -1,58 +1,63 @@
-async function getEvents() { //defino una función asincrona (lee LINEA por LINEA)
-    let response = await fetch("https://amazingeventsapi.herokuapp.com/api/eventos") //lo primero que tiene que hacer la funcion es ESPERAR la carga de un archivo (base de datos)
-    let data = await response.json() // espero la transformacion del json
-    let events = data.eventos // defino la variable que contiene los eventos
-    let date = data.fechaActual // defino la variable que contiene la fecha actual
-    return [events, date]
+async function getEvents() {
+    try {
+        let applied = {}
+        let response = await fetch("https://amazingeventsapi.herokuapp.com/api/eventos")
+        let data = await response.json()
+        let date = data.fechaActual
+        let events = data.eventos
+        events = events.filter(event => date > event.date)
+        let categories = new Set(events.map(event => event.category))
+        categories.forEach(innerOptions)
+        printEvents(events)
+        document.querySelector("#inputToSearch").addEventListener("keyup",(event) => {
+            applied.text=event.target.value
+            filter(events,applied)
+        })
+        document.querySelector("#defaultList").addEventListener("change",(event) => {
+            applied.select=event.target.value
+            filter(events,applied)
+        })
+    } catch(error) {
+        console.log(error)
+    }
 }
+getEvents()
 
-const getJson = await getEvents() // espero la ejecución la funcion para cargar los datos del json
-var amazingEvents = getJson[0] // defino la variable que contiene un array con los eventos
-var actualDate = getJson[1] // defino la variable que contiene la fecha en el JSON
+let innerOptions = (category) => document.querySelector("#defaultList").innerHTML += `<option value="${category}">${category}</option>`
 
-var categories = amazingEvents.map (category => category.category) // selecciono las categorias
-categories = new Set (categories) // elimino las repetidas
-//console.log(categories); // verifico la carga de datos
-categories = [...categories] // transformo el objeto en un array
-//console.log(categories);
-var innerCategories = ""
-categories.map( events => {
-    innerCategories +=
-    `
-    <option id="${events}">${events}</option>
-    `}
-)
-document.querySelector("#defaultList").innerHTML += innerCategories
-
-function timeFilter (events,dateEvent) { // defino la funcion que filtra
-    events.map (e => { //realizo un mapeo para separar eventos del pasado y futuro
-        if (dateEvent > e.date) { //condiciono las fechas para separar
-            pastEvents.push(e) //pusheo los eventos correspondientes
-        } else {
-            futureEvents.push(e) //pusheo los eventos correspondientes
-        }
-    })
-}
-var futureEvents = [] // defino el array que va a contener los eventos del futuro
-var pastEvents = [] // defino el array que va a contener los eventos del pasado
-timeFilter(amazingEvents,actualDate) //aplico el filtro de tiempo
-
-function toPrint (arrayOfEvents) { // defino la funcion que imprime en pantalla (cuyos parametros son: el array de eventos, el string past/future y cantidad de eventos a imprimir)
-    var toPrintEvents = ""
-    arrayOfEvents.map(events =>{ //realizo un mapeo para configurar la impresión de los eventos futuros/pasados
-            toPrintEvents += // acumulo los eventos
+let printEvents = (array) => {
+    document.querySelector("#events").innerHTML = ""
+    array.forEach(event =>{ //realizo un mapeo para configurar la impresión de los eventos futuros/pasados
+        document.querySelector("#events").innerHTML += // acumulo los eventos
             `
-            <a href="evento.html?id=${events.id}" class="d-flex m-2 imgWidth hoverEvent">
+            <a href="evento.html?id=${event.id}" class="d-flex m-2 imgWidth hoverEvent">
             <article class="d-flex flex-column justify-content-center align-items-center imgWidth">
-                <h3 class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${events.name}</h3>
-                <img src="${events.image}" class="imgWidth">
-                <p class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${events.category}:  ${events.date}</p>
+                <h3 class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${event.name}</h3>
+                <img src="${event.image}" class="imgWidth">
+                <p class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${event.category}:  ${event.date}</p>
             </article>
             </a>
             `
     })
-    document.querySelector("#events").innerHTML = toPrintEvents // imprimimos en html
 }
+
+let filter = (array,obj) => {
+    let filterArray = array
+    for (let prop in obj) {
+        if (prop==='text') {
+            filterArray = filterArray.filter(e => e.name.toLowerCase().includes(obj[prop].toLowerCase()))
+        }
+        if (prop==='select') {
+            filterArray = filterArray.filter(e => e.category===obj[prop])
+        }
+    }
+    printEvents(filterArray)
+}
+
+
+/* 
+
+
 
 var parameter = "" // variable que va a contener el valor del select
 var data = [] // array que va a contener los eventos a imprimir
@@ -104,7 +109,5 @@ function toSearch (event) { // funcion que captura el valor proveniente del inpu
     return valueOfInput
 }
 
-document.querySelector("#inputToSearch").addEventListener("keyup",toSearch) // ejecuto la funcion con cada evento de teclado
-document.querySelector("#defaultList").addEventListener("change",toSelect) // ejecuto la funcion con cada evento de cambio
 
-toPrint(futureEvents) // imprimo en pantalla
+toPrint(futureEvents) // imprimo en pantalla */
