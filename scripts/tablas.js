@@ -1,5 +1,5 @@
 const getStats1 = async(id) => {
-    let response = await fetch(`https://mh-amazing-events.up.railway.app/amazing?time=past`)
+    let response = await fetch(`https://mh-amazing-events.up.railway.app/espectaculares?time=past`)
     let data = await response.json()
     let events = data.events
     events.map(event => {
@@ -17,7 +17,7 @@ const getStats1 = async(id) => {
 getStats1('table1')
 
 const getStats2 = async(time,property,id) => {
-    let response = await fetch(`https://mh-amazing-events.up.railway.app/amazing?time=${time}`)
+    let response = await fetch(`https://mh-amazing-events.up.railway.app/espectaculares?time=${time}`)
     let data = await response.json()
     let events = data.events
     events.map(event => {

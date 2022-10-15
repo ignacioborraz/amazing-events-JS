@@ -1,1 +1,1 @@
-getEvents("upcoming","https://mh-amazing-events.up.railway.app/amazing")
+getEvents("upcoming","https://mh-amazing-events.up.railway.app/espectaculares")

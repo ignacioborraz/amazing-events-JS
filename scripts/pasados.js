@@ -1,1 +1,1 @@
-getEvents("past","https://mh-amazing-events.up.railway.app/amazing?order=desc")
+getEvents("past","https://mh-amazing-events.up.railway.app/espectaculares?order=desc")
