@@ -1,8 +1,7 @@
 async function getEvents() { //defino una función asincrona (lee LINEA por LINEA)
-    let response = await fetch("https://amazingeventsapi.herokuapp.com/api/eventos") //lo primero que tiene que hacer la funcion es ESPERAR la carga de un archivo (base de datos)
-    let data = await response.json() // espero la transformacion del json
-    let date = data.fechaActual // defino la variable que contiene la fecha actual
-    let events = data.eventos // defino la variable que contiene los eventos
+    let response = await fetch("https://mh-amazing-events.up.railway.app/amazing")
+    let data = await response.json()
+    let events = data.event
     events.map (event => { //mapeo los eventos para agregar las propiedades que me faltan (ganancia y %)
         if (event.assistance > 0) {
             event.gain = Number(event.assistance * event.price)
