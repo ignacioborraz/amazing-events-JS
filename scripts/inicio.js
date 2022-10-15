@@ -1,11 +1,11 @@
 async function getEvents() {
     try {
         let applied = {}
-        let response = await fetch("https://mh-amazing-events.up.railway.app/amazing?order=desc")
+        let response = await fetch("https://mh-amazing-events.up.railway.app/amazing")
         let data = await response.json()
         let date = data.date
         let events = data.events
-        events = events.filter(event => date >= event.date)
+        events = events.filter(event => date < event.date)
         let categories = new Set(events.map(event => event.category))
         categories.forEach(innerOptions)
         printEvents(events)
