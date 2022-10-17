@@ -3,7 +3,7 @@ async function getEvents() {
     //console.log(location.search)
     //console.log(location.search.slice(4))
     let id = location.search.slice(4)
-    let response = await fetch(`https://mh-amazing-events.up.railway.app/espectaculares/${id}`)
+    let response = await fetch(`https://mind-hub.up.railway.app/espectaculares/${id}`)
     let data = await response.json()
     //console.log(data)
     let event = data.event
