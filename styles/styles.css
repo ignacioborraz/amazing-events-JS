@@ -12,7 +12,6 @@
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 .backGroundImage {
@@ -156,40 +155,57 @@ textarea {
     resize: none;
 }
 
-#modalDetail {
-    position: fixed;
+.modal {
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 0;
-}
-
-.modal {
-    background-color: rgba(0, 0, 0, 0.8);
-    opacity: 0;
     display: none;
     flex-direction: column;
-    pointer-events: none;
-}
-
-.modal:target {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000b3;
     width: 100%;
-    min-height: 100vh;
-    opacity: 1;
-    pointer-events: auto;
+    height: 100vh;
 }
 
-.closeModal {
-    font-weight: bold;
+.on-open {
+    display: flex;
 }
 
-.closeModal:hover:not(img) {
-    background-color: rgb(140, 50, 70);
-    color: rgb(210, 210, 210)
+.on-close {
+    display: none;
+}
+
+.div-buttons {
+    width: 320px;
+    display: flex;
+}
+
+.buttons {
+    font-family: 'Share Tech Mono', monospace;
+    width: 50%;
+    text-align: center;
+    flex-grow: 1;
+    background-color: #f35a69;
+    border: none;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+}
+.buttons:hover {
+    background-color: #ac5059cc;
+}
+
+.close {
+    background-color: #ac5059;
+}
+.close:hover {
+    background-color: #f35a69cc;
+}
+
+.white {
+    background-color: white;
 }
 
 @media only screen and (max-width: 576px){
