@@ -454,52 +454,136 @@ let events = [
 ]
 
 //FILTER: para filtrar eventos pasados y futuros
-let past = events.filter(element => element.date<=actualDate)
-console.log(past)
-let upcoming = events.filter(element => element.date>actualDate)
-console.log(upcoming)
+let upcoming = events.filter(everyEvent => everyEvent.date > actualDate)
+//console.log(upcoming)
+let past = events.filter(everyEvent => everyEvent.date <= actualDate)
+//console.log(past)
 
 //MAP: para transformar cada objeto y agregar la ganancia y el porcentaje de asistencia
-past.map(element => {
-    element.gain = element.assistance * element.price
-    element.percent = Number((100 * element.assistance / element.capacity).toFixed(2))
+//tomo los datos del array past (porque ya sucedieron y ya tienen asistencia y ganancia)
+past.map(everyEvent => {
+    everyEvent.ganancia = everyEvent.price * everyEvent.assistance
+    everyEvent.porcentaje = 100 * everyEvent.assistance / everyEvent.capacity
 })
-console.log(past)
+//console.log(past)
 
-//SORT: para ordenar or fecha
-let pastSorted = past.sort((element1,element2) => (new Date(element1.date))-(new Date(element2.date)))
-console.log(pastSorted);
+//SORT: para ordenar por fecha
+let ordenadosPorGanancia = [...past].sort((evento1,evento2) => evento1.ganancia-evento2.ganancia)
+//evento1-evento2 ordena de menor a mayor (y al revés: al revés)
+//se utiliza el spread operator para COPIAR el array (y no modificar el original)
+//console.log(past)
+//console.log(ordenadosPorGanancia)
+let menorGanancia = ordenadosPorGanancia[0]
+//console.log(menorGanancia)
+let mayorGanancia = ordenadosPorGanancia[ordenadosPorGanancia.length-1]
+//console.log(mayorGanancia)
+let ordenadosPorAsistencia = [...past].sort((evento1,evento2) => evento1.porcentaje-evento2.porcentaje)
+//console.log(ordenadosPorAsistencia)
+let menorAsistencia = ordenadosPorAsistencia[0]
+//console.log(menorAsistencia)
+let mayorAsistencia = ordenadosPorAsistencia[ordenadosPorAsistencia.length-1]
+//console.log(mayorAsistencia)
 
-//REDUCE: para obtener ganancia total
-let initialStat = {
-    gain: 0
+//FOREACH: para renderizar todas las cards
+function printEvents(array,id) {
+    //la funcion necesita un array de eventos (cualquier array de eventos: pasados,futuros,ordenados,etc)
+    //y necesita el id de la etiqueta donde se va a imprimir/renderizar
+    document.querySelector(`#${id}`).innerHTML = ""
+    array.forEach(event =>{
+        document.querySelector(`#${id}`).innerHTML +=
+            `
+            <article class="d-flex flex-column justify-content-center align-items-center imgWidth">
+                <h3 class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${event.name}</h3>
+                <img src="${event.image}" class="imgWidth">
+                <p class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${event.category} - ${(new Date(event.date)).getDate()+1}/${(new Date(event.date)).getMonth()+1}/${(new Date(event.date)).getFullYear()}</p>
+            </article>
+            `
+    })
 }
-let gain = past.reduce((element1,element2) => {
-    return {
-        gain: element1.gain + element2.gain
+printEvents(upcoming,'events')
+
+/*REDUCE: para obtener ganancia total
+LOGICA DEL REDUCTOR
+en cada vuelta, al reductor entra dos objetos
+    1.1 - en la primer vuelta entran elemento0 y elemento1 del array de eventos
+        entran {ganancia: 0} y {ganancia: 1000} y sale {ganancia: 0+1000}
+        si no retorno el objeto, por defecto se retorna el number: 1000
+        y si entra 1000 y {ganancia: 500} en la segunda vuelta HAY UN ERROR y NO SE PUEDE REDUCIR EL ARRAY
+    1.2 - en la segunda vuelta entra el resultado de la operacion y el elemento2 del array de eventos
+        entran {ganancia: 1000} y {ganancia: 500}, y sale {ganancia: 1000+500}
+    1.3 - en la vuelta 3, entra el resultado anterior y el elemento3 del array de eventos
+        entran {ganancia: 1500} y {ganancia: 100}, y sale {ganancia: 1500+100}
+    1.4 - en la vuelta 4, entra el resultado anterior y el elemento3 del array de eventos
+        entran {ganancia: 1600} y {ganancia: 4000}, y sale {ganancia: 1600+4000}
+    1.5 - en la vuelta 5, entra el resultado anterior y el elemento3 del array de eventos
+        entran {ganancia: 5600} y {ganancia: 100}, y sale {ganancia: 5600+100}
+    resultado final {ganancia: 5700}
+*/
+//primero defino la función que va a requerir los dos objetos y returnar el objeto "operado":
+    function sumarGanancias(elemento1,elemento2) {
+        let sumaDeGanancias = elemento1.ganancia+elemento2.ganancia //esto es un number
+        let subTotal = { //armo el objeto que se va a devolver
+            ganancia: sumaDeGanancias
+        }
+        return subTotal //retono el objeto que se va a seguir operando en la vuelta siguiente
     }
-}, initialStat)
-console.log(gain)
+//segundo defino el objeto zero:
+    let zero = {ganancia: 0}
+//tercero aplico el reductor al array
+    let gananciasTotales = past.reduce((elemento1,elemento2) =>
+        sumarGanancias(elemento1,elemento2),
+        zero
+    )
+    //console.log(gananciasTotales)
 
 //SET+MAP+SPREAD: para obtener un array de categorias
-let categories = new Set(events.map(event => event.category))
-categories = [...categories]
-console.log(categories)
+let categorias = new Set(events.map(element => element.category))
+//primero hago un map para obtener un array de categorias
+//segundo aplico un set para eliminar los repetidos
+//console.log(categorias)
+//tercero aplico el spread para transformar el set en un array y poder ampliar los métodos y propiedades de la variable
+categorias = [...categorias]
+//console.log(categorias)
+
+//FOREACH: para renderizar todas las categorias
+let printCategories = (array,id) => {
+    document.querySelector(`#${id}`).innerHTML = ""
+    array.forEach(cat =>{
+        document.querySelector(`#${id}`).innerHTML +=
+            `
+            <label class="d-flex align-items-center p-1" for="${cat.toLowerCase()}">${cat.toUpperCase()}
+                <input class="d-flex align-items-center m-1 checkbox" type="checkbox" id="${cat.toLowerCase()}" name="letter" value="${cat.toLowerCase()}">
+            </label>
+            `
+    })
+    let checks = document.querySelectorAll('.checkbox')
+    checks.forEach(cadaCheck => {
+        cadaCheck.addEventListener('click',() => search(past))
+    })
+    console.log(checks)
+}
+printCategories(categorias,'checks')
 
 //MAP+FILTER: para obtener un array con los eventos de cada categoria
-let catEvents = categories.map(cat => {
-    return pastSorted.filter(event => event.category===cat)
+//es un array cuya longitud coincide con la longitud del array de categorias
+//tengo que usar el map porque tengo que transformar el array de categorias
+//en un array con los eventos DE CADA CATEGORIA
+let arrayEventos = categorias.map(cadaCategoria => {
+    //console.log(cadaCategoria)
+    let arrayFiltrado = events.filter(cadaEvento => cadaEvento.category === cadaCategoria)
+    //console.log(arrayFiltrado)
+    return arrayFiltrado
 })
-console.log(catEvents)
+//console.log(arrayEventos)
 
 //MAP+SORT: para ordenar para ordenar los arrays de cada categoria
 let sorted = catEvents.map(cadaArray => {
     return cadaArray.sort((element1,element2) => element1.percent-element2.percent)
 })
-console.log(sorted)
+//console.log(sorted)
 
 //MAP+REDUCE: para reducir las ganancias y el porcentaje de asistencia general
-let zero = {
+let cero = {
     category: "",
     gain: 0,
     capacity: 0,
@@ -513,63 +597,27 @@ let stats = catEvents.map(cadaArray => {
             capacity: element1.capacity + element2.capacity,
             assistance: element1.assistance + element2.assistance
         }
-    }, zero)
+    }, cero)
 })
-console.log(stats)
+//console.log(stats)
 stats.map(element => element.percent = Number((100 * element.assistance / element.capacity).toFixed(2)))
-console.log(stats)
+//console.log(stats)
 
-//FOREACH: para renderizar todas las categorias
-let printCategories = (array,id) => {
-    document.querySelector(`#${id}`).innerHTML = ""
-    array.forEach(cat =>{
-        document.querySelector(`#${id}`).innerHTML +=
-            `
-            <label class="d-flex align-items-center p-1" for="${cat.toLowerCase()}">${cat.toUpperCase()}
-                <input class="d-flex align-items-center m-1 checkbox" type="checkbox" id="${cat.toLowerCase()}" name="letter" value="${cat.toLowerCase()}">
-            </label>
-            `
+//RENDERIZAR CON CHECKS
+function search(array) {
+    //selecciono TODAS las clases checkbox que estan en checked=true
+    let checks = document.querySelectorAll('.checkbox:checked')
+    //console.log(checks)
+    //con un for of o foreach recorro la lista de checks para renderizar cada categoria seleccionada
+    let filterArray = []
+    checks.forEach(cadaCategoria => {
+        let newArray = array.filter(cadaEvento => cadaEvento.category.toLowerCase() === cadaCategoria.value)
+        //console.log(newArray);
+        filterArray = filterArray.concat(newArray)
     })
-    let checks = document.querySelectorAll('input')
-    console.log(checks)
-}
-printCategories(categories,'checks')
-
-//FOREACH: para renderizar todas las cards
-let printEvents = (array,id) => {
-    document.querySelector(`#${id}`).innerHTML = ""
-    array.forEach(event =>{
-        document.querySelector(`#${id}`).innerHTML +=
-            `
-            <a href="evento.html?id=${event.id}" class="d-flex m-2 imgWidth hoverEvent">
-            <article class="d-flex flex-column justify-content-center align-items-center imgWidth">
-                <h3 class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${event.name}</h3>
-                <img src="${event.image}" class="imgWidth">
-                <p class="d-flex justify-content-center align-items-center card-text mt-1 mb-1 imgWidth">${event.category} - ${(new Date(event.date)).getDate()+1}/${(new Date(event.date)).getMonth()+1}/${(new Date(event.date)).getFullYear()}</p>
-            </article>
-            </a>
-            `
-    })
-}
-printEvents(pastSorted,'events')
-/* 
-let checks = document.querySelectorAll('input')
-console.log(checks)
-for (let element of checks) {
-    element.addEventListener(
-        'click',
-        (event) => search(event,pastSorted,letters)
-    )
-}
-
-function search(ev,array,let) {
-    console.log(ev.target.id)
-    console.log(ev.target.checked)
-    if (ev.target.checked) {
-        let filterLetters = let[ev.target.id]
-        let filterEvents = array.filter(element => {
-            element.name.startsWith(filterLetters)
-        })
+    //console.log(filterArray)
+    if (filterArray.length===0) { //si el filtro queda sin checks imprimo todo
+        filterArray = array
     }
-    
-} */
+    printEvents(filterArray,'events')
+}
