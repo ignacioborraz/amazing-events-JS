@@ -19,12 +19,21 @@ let printEvents = (array) => {
 let filter = (array,obj) => {
     let filterArray = array
     for (let prop in obj) {
-        if (prop==='text') {
+        if (prop==='name') {
             filterArray = filterArray.filter(e => e.name.toLowerCase().includes(obj[prop].toLowerCase()))
         }
-        if (prop==='select') {
+        if (prop==='category') {
             filterArray = filterArray.filter(e => e.category===obj[prop])
         }
     }
     printEvents(filterArray)
+}
+
+let filterWithApi = async(obj,time) => {
+    console.log(obj)
+    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}&category=${obj.category||""}&name=${obj.name||""}`)
+    let data = await response.json()
+    //console.log(data)
+    let events = data.response
+    printEvents(events)
 }

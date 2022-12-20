@@ -1,21 +1,20 @@
-async function getEvents(time,url) {
+async function getEvents(time) {
     try {
         let applied = {}
-        let response = await fetch(url)
+        let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}`)
         let data = await response.json()
-        let date = data.date
-        let events = data.events
-        time==='upcoming' ? events = events.filter(event => date < event.date) : events = events.filter(event => date >= event.date)
+        //console.log(data)
+        let events = data.response
         let categories = new Set(events.map(event => event.category))
         categories.forEach(innerOptions)
         printEvents(events)
         document.querySelector("#inputToSearch").addEventListener("keyup",(event) => {
-            applied.text=event.target.value
-            filter(events,applied)
+            applied.name=event.target.value
+            filterWithApi(applied,time)
         })
         document.querySelector("#defaultList").addEventListener("change",(event) => {
-            applied.select=event.target.value
-            filter(events,applied)
+            applied.category=event.target.value
+            filterWithApi(applied,time)
         })
     } catch(error) {
         console.log(error)
