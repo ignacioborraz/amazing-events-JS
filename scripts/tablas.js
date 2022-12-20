@@ -1,11 +1,9 @@
 const getStats1 = async(id) => {
-    let response = await fetch(`https://mind-hub.up.railway.app/espectaculares?time=past`)
+    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=past`)
     let data = await response.json()
-    let events = data.events
-    events.map(event => {
-        event.gain = event.assistance * event.price
-        event.percent = (100 * event.assistance / event.capacity).toFixed(2)
-    })
+    //console.log(data)
+    let events = data.response
+    events = newProperties(events)
     events = events.sort((event1,event2)=> event1.percent - event2.percent)
     let minPercent = events[0]
     let maxPercent = events[events.length-1]
@@ -17,15 +15,11 @@ const getStats1 = async(id) => {
 getStats1('table1')
 
 const getStats2 = async(time,property,id) => {
-    let response = await fetch(`https://mind-hub.up.railway.app/espectaculares?time=${time}`)
+    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}`)
     let data = await response.json()
-    let events = data.events
-    events.map(event => {
-        event.gain = event[property] * event.price
-        event.percent = (100 * event[property] / event.capacity).toFixed(2)
-    })
-    let categories = new Set(events.map(event => event.category))
-    categories = [...categories]
+    let events = data.response
+    events = newProperties(events)
+    let categories = [...new Set(events.map(event => event.category))]
     let stats = categories.map(cat => {
         let filter = events.filter(event => event.category===cat)
         return reduceStats(filter,property)
@@ -35,6 +29,14 @@ const getStats2 = async(time,property,id) => {
 
 getStats2('past','assistance','table2')
 getStats2('upcoming','estimate','table3')
+
+const newProperties = (array) => {
+    array.map(event => {
+        event.gain = (event.assistance || event.estimate) * event.price
+        event.percent = Number((100 * (event.assistance || event.estimate) / event.capacity).toFixed(2))
+    })
+    return array
+}
 
 const reduceStats = (array,prop)=> {
     let initialStat = {
@@ -51,6 +53,6 @@ const reduceStats = (array,prop)=> {
             [prop]: element1[prop] + element2[prop]
         }
     }, initialStat)
-    stats.prom = (100 * stats[prop] / stats.capacity).toFixed(2)
+    stats.prom = Number((100 * stats[prop] / stats.capacity).toFixed(2))
     return stats
 }

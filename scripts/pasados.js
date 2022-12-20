@@ -1,1 +1,1 @@
-getEvents("past","https://mind-hub.up.railway.app/espectaculares?order=desc")
+getEvents("past")
