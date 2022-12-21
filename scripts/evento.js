@@ -1,6 +1,6 @@
 async function getEvent() {
     let id = location.search.slice(4)
-    let response = await fetch(`https://mind-hub.up.railway.app/espectaculares/${id}`)
+    let response = await fetch(`https://mh.up.railway.app/api/espectaculares/${id}`)
     let data = await response.json()
     let event = data.response
     toPrintDetails(event,'events')
