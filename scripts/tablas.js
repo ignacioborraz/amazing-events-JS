@@ -1,5 +1,5 @@
 const getStats1 = async(id,time) => {
-    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}`)
+    let response = await fetch(`https://mh-h0bh.onrender.com/api/espectaculares?time=${time}`)
     let data = await response.json()
     //console.log(data)
     let events = data.response
@@ -15,7 +15,7 @@ const getStats1 = async(id,time) => {
 getStats1('table1','past')
 
 const getStats2 = async(time,property,id) => {
-    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}`)
+    let response = await fetch(`https://mh-h0bh.onrender.com/api/espectaculares?time=${time}`)
     let data = await response.json()
     let events = data.response
     events = newProperties(events)

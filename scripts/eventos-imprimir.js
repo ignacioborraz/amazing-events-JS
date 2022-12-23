@@ -31,7 +31,7 @@ let filter = (array,obj) => {
 
 let filterWithApi = async(obj,time) => {
     console.log(obj)
-    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}&category=${obj.category||""}&name=${obj.name||""}`)
+    let response = await fetch(`https://mh-h0bh.onrender.com/api/espectaculares?time=${time}&category=${obj.category||""}&name=${obj.name||""}`)
     let data = await response.json()
     //console.log(data)
     let events = data.response

@@ -16,33 +16,18 @@ function handleSubmit(event) {
         //console.log(input.value)
         data[input.id] = input.value
     }
-    //console.log(data) //esta informacion se enviará a la base de datos luego
-    handleModal('open')
+    console.log(data) //esta informacion se enviará a la base de datos luego
+    fetch('https://mh-h0bh.onrender.com/api/espectaculares', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => location.href = './inicio.html')
 }
 
 newEvent.addEventListener(
     'submit',
     handleSubmit
 )
-
-function handleModal(type) {
-    let modal = document.querySelector('#modal')
-    modal.className = `modal on-${type}`
-}
-
-let close = document.querySelector('#close')
-close.addEventListener(
-    'click',
-    () => handleModal('close')
-)
-
-let done = document.querySelector('#done')
-done.addEventListener(
-    'click',
-    () => {
-        console.log(location)
-        console.log(object);
-        location.href = location.host+'/inicio.html'
-    }
-)
-

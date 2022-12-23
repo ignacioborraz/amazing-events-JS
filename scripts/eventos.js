@@ -1,7 +1,7 @@
 async function getEvents(time) {
     try {
         let applied = {}
-        let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}`)
+        let response = await fetch(`https://mh-h0bh.onrender.com/api/espectaculares?time=${time}`)
         let data = await response.json()
         //console.log(data)
         let events = data.response
