@@ -1,5 +1,5 @@
-const getStats1 = async(id) => {
-    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=past`)
+const getStats1 = async(id,time) => {
+    let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}`)
     let data = await response.json()
     //console.log(data)
     let events = data.response
@@ -12,7 +12,7 @@ const getStats1 = async(id) => {
     printTable1(minPercent,maxPercent,maxCapacity,id)
 }
 
-getStats1('table1')
+getStats1('table1','past')
 
 const getStats2 = async(time,property,id) => {
     let response = await fetch(`https://mh.up.railway.app/api/espectaculares?time=${time}`)
