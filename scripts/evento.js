@@ -1,6 +1,6 @@
 async function getEvent() {
     let id = location.search.slice(4)
-    let response = await fetch(`https://mh-h0bh.onrender.com/api/espectaculares/${id}`)
+    let response = await fetch(`https://pro-talento.up.railway.app/api/espectaculares/${id}`)
     let data = await response.json()
     let event = data.response
     toPrintDetails(event,'events')
