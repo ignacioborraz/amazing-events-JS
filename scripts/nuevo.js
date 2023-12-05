@@ -17,7 +17,7 @@ function handleSubmit(event) {
         data[input.id] = input.value
     }
     console.log(data) //esta informacion se enviará a la base de datos luego
-    fetch('https://pro-talento.up.railway.app/api/espectaculares', {
+    fetch('https://mh-h0bh.onrender.com/api/espectaculares', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
